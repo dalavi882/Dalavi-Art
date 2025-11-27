@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <!-- Security: CSP & Meta -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com https://images.unsplash.com data:;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AURELIA - The World's Premier Digital Art Sanctuary. Buy Physical & Digital Art with Crypto, Credit, or Syndicate Pools.">
+    <title>AURELIA | Global Art Sanctuary</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ArtGallery",
+      "name": "Aurelia Global",
+      "image": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5",
+      "description": "The world's most exclusive art sanctuary featuring painting, sculpture, and digital assets.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Art District Blvd",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "postalCode": "10012",
+        "addressCountry": "US"
+      }
+    }
+    </script>
+    <style>
+        /* LUXURY COLOR PALETTE & THEME */
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F4DF4E;
+            --gold-dark: #AA8C2C;
+            --black-deep: #050505;
+            --surface: #111111;
+            --text-main: #E0E0E0;
+            --text-muted: #9CA3AF;
+        }
+
+        body {
+            background-color: var(--black-deep);
+            color: var(--text-main);
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-italic {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* UTILITIES */
+        .text-gold { color: var(--gold-primary); }
+        .bg-gold { background-color: var(--gold-primary); }
+        .border-gold { border-color: var(--gold-primary); }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary), var(--gold-light), var(--gold-primary), var(--gold-dark));
+            background-size: 400% 400%;
+            animation: shimmer 6s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(135deg, var(--gold-dark), var(--gold-primary), var(--gold-light)) 1;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .text-shadow-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ANIMATIONS */
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .slide-up { animation: slideUp 0.8s ease-out forwards; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-primary); }
+
+        /* LOADER */
+        .spinner {
+            border: 2px solid rgba(255,255,255,0.1);
+            border-left-color: var(--gold-primary);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* COUNTDOWN TIMER */
+        .countdown-digit {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1rem;
+            min-width: 80px;
+            text-align: center;
+            position: relative;
+        }
+        .countdown-digit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+        .countdown-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* 3D EFFECT MOCK */
+        .perspective-container {
+            perspective: 1000px;
+        }
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-yellow-900 selection:text-white">
+
+    <!-- GLOBAL NAVIGATION -->
+    <nav id="navbar" class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-[1800px] mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="Router.navigate('home')">
+                    <div class="relative w-10 h-10 flex items-center justify-center transition-transform duration-700 group-hover:rotate-180">
+                        <div class="absolute inset-0 border border-yellow-600 rotate-45"></div>
+                        <div class="w-2 h-2 bg-yellow-500 rotate-45"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold tracking-[0.2em] text-white">AURELIA</h1>
+                        <p class="text-[0.6rem] text-yellow-600 tracking-[0.3em] uppercase">Global Art Sanctuary</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-6">
+                    <button onclick="Router.navigate('home')" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-yellow-500 transition-colors">Collection</button>
+                    <button onclick="Router.navigate('metaverse')" class="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 animate-pulse hover:from-purple-300 hover:to-pink-500">Metaverse VR</button>
+                    <button onclick="Router.navigate('livestudio')" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors flex items-center gap-1"><span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Live Studio</button>
+                    <button onclick="Router.navigate('boutique')" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-yellow-500 transition-colors">Boutique</button>
+                    
+                    <!-- Search Bar -->
+                    <div class="relative group">
+                        <input type="text" id="nav-search" onkeypress="if(event.key === 'Enter') Router.navigate('home', this.value)" placeholder="Search..." class="bg-white/5 border border-white/10 rounded-full py-1 px-4 text-xs text-white w-32 focus:w-48 transition-all outline-none focus:border-yellow-500">
+                        <button onclick="UI.startVoiceSearch()" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-yellow-500">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Cart Icon -->
+                    <button onclick="UI.toggleCart()" class="relative text-gray-400 hover:text-white p-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span id="cart-count" class="absolute top-0 right-0 bg-yellow-600 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    </button>
+
+                    <!-- Dynamic Auth Button -->
+                    <div id="auth-nav-container">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-white" onclick="UI.toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SOCIAL PROOF NOTIFICATION -->
+    <div id="social-proof" class="fixed top-28 right-8 z-[40] bg-black/80 backdrop-blur border border-yellow-500/30 p-4 transform translate-x-[120%] transition-transform duration-500 rounded flex items-center gap-4 shadow-2xl">
+        <div class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center text-black font-bold">A</div>
+        <div>
+            <p id="sp-text" class="text-xs text-white font-serif">New acquisition from Tokyo</p>
+            <p id="sp-time" class="text-[10px] text-gray-400">Just now</p>
+        </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/95 transform translate-x-full transition-transform duration-300 lg:hidden flex items-center justify-center">
+        <button onclick="UI.toggleMobileMenu()" class="absolute top-8 right-8 text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <div class="flex flex-col gap-8 text-center">
+            <button onclick="Router.navigate('home'); UI.toggleMobileMenu()" class="text-2xl font-serif text-white">Collection</button>
+            <button onclick="Router.navigate('metaverse'); UI.toggleMobileMenu()" class="text-2xl font-serif text-purple-400">Metaverse VR</button>
+            <button onclick="Router.navigate('livestudio'); UI.toggleMobileMenu()" class="text-2xl font-serif text-red-500">Live Studio</button>
+            <div id="mobile-auth-container"></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main id="app-root" class="flex-grow pt-24 min-h-screen">
+        <!-- Views injected here -->
+    </main>
+
+    <!-- COOKIE CONSENT -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-[#111] border-t border-white/10 p-6 z-[100] flex flex-col md:flex-row justify-between items-center gap-4 transform translate-y-full transition-transform duration-500">
+        <p class="text-xs text-gray-400 max-w-2xl">We use encrypted cookies to ensure the security of your acquisitions and provide personalized analytics. By continuing to browse, you agree to our <a href="#" class="text-yellow-500 underline">Privacy Protocols</a>.</p>
+        <div class="flex gap-4">
+            <button onclick="document.getElementById('cookie-banner').classList.add('translate-y-full')" class="text-xs text-gray-500 hover:text-white">Decline</button>
+            <button onclick="document.getElementById('cookie-banner').classList.add('translate-y-full'); localStorage.setItem('cookies_accepted', 'true')" class="bg-white text-black px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-yellow-500 transition-colors">Accept Securely</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 bg-[#020202] py-16 mt-auto">
+        <!-- AS SEEN IN -->
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 mb-16 text-center">
+            <p class="text-xs text-gray-600 uppercase tracking-[0.3em] mb-8">Recognized By Global Institutions</p>
+            <div class="flex flex-wrap justify-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-xl font-serif text-white">VOGUE</span>
+                <span class="text-xl font-serif text-white">FORBES</span>
+                <span class="text-xl font-serif text-white">ArtBasel</span>
+                <span class="text-xl font-serif text-white">Sotheby's</span>
+                <span class="text-xl font-serif text-white">CHRISTIE'S</span>
+            </div>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 mb-20 border-b border-white/5 pb-12">
+            <div class="bg-[#0a0a0a] border border-white/5 p-8 md:p-12 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-600/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="text-center md:text-left max-w-xl">
+                        <h3 class="text-2xl font-serif text-white mb-2">Join the Inner Circle</h3>
+                        <p class="text-gray-500 text-sm">Receive the "Curator's Briefing" — exclusive drop alerts, market analysis, and private viewing invitations.</p>
+                    </div>
+                    <form onsubmit="UI.handleNewsletter(event)" class="w-full md:w-auto flex flex-col md:flex-row gap-2">
+                        <input type="email" required placeholder="your@email.com" class="bg-[#111] border border-white/10 text-white px-6 py-4 text-xs w-full md:w-80 outline-none focus:border-yellow-600 transition-colors">
+                        <button type="submit" class="bg-white text-black px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-yellow-500 transition-colors whitespace-nowrap">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <h3 class="text-xl font-serif text-white mb-6 tracking-widest">AURELIA</h3>
+                <p id="footer-mission" class="text-gray-500 text-sm leading-relaxed max-w-md mb-8">
+                    <!-- Dynamic Text -->
+                </p>
+                <div class="flex gap-4 mb-8">
+                    <a href="https://instagram.com" target="_blank" class="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:border-yellow-500 hover:text-yellow-500 transition-all cursor-pointer rounded-full">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:border-yellow-500 hover:text-yellow-500 transition-all cursor-pointer rounded-full">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-400 hover:border-yellow-500 hover:text-yellow-500 transition-all cursor-pointer rounded-full">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+                <!-- Language & Currency -->
+                <div class="flex gap-4">
+                    <select onchange="UI.changeLanguage(this.value)" class="bg-black border border-white/20 text-xs text-gray-400 px-3 py-2 outline-none focus:border-yellow-500">
+                        <option value="USD">English (USD)</option>
+                        <option value="EUR">Français (EUR)</option>
+                        <option value="JPY">日本語 (JPY)</option>
+                        <option value="CNY">中文 (CNY)</option>
+                        <option value="AED">العربية (AED)</option>
+                        <option value="GBP">English (GBP)</option>
+                        <option value="CHF">Deutsch (CHF)</option>
+                        <option value="KRW">한국어 (KRW)</option>
+                        <option value="RUB">Русский (RUB)</option>
+                        <option value="INR">हिन्दी (INR)</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Concierge</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><button onclick="UI.toggleChat()" class="hover:text-yellow-500 transition-colors">Live Support</button></li>
+                    <li><button onclick="Router.navigate('about')" class="hover:text-yellow-500 transition-colors">Advisory</button></li>
+                    <li><button onclick="UI.openArtistApp()" class="hover:text-yellow-500 transition-colors">Artist Application</button></li>
+                    <li><button onclick="UI.openInfluencerPortal()" class="hover:text-yellow-500 transition-colors">Affiliate Portal</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Legal</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><button onclick="UI.showTerms()" class="hover:text-yellow-500 transition-colors">Terms of Service</button></li>
+                    <li><button onclick="UI.showTerms()" class="hover:text-yellow-500 transition-colors">Privacy Policy</button></li>
+                    <li><button onclick="UI.showTerms()" class="hover:text-yellow-500 transition-colors">GDPR Compliance</button></li>
+                    <li><button onclick="UI.showTerms()" class="hover:text-yellow-500 transition-colors">Shipping Policy</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-700 text-xs">© 2024 Aurelia Global. All rights reserved.</p>
+            <div class="flex items-center gap-2 text-green-500 text-xs uppercase tracking-widest">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                AES-256 Encrypted Connection
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART SIDEBAR -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 z-[75] w-full md:w-96 bg-[#0a0a0a] border-l border-white/10 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <div class="p-6 border-b border-white/10 flex justify-between items-center">
+            <h2 class="text-xl font-serif text-white">Your Selection</h2>
+            <button onclick="UI.toggleCart()" class="text-gray-500 hover:text-white">✕</button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-6">
+            <!-- Items Injected Here -->
+            <p class="text-gray-500 text-center mt-10">Your collection is empty.</p>
+        </div>
+        <div class="p-6 border-t border-white/10 bg-[#050505]">
+            <div class="flex justify-between text-gray-400 text-xs mb-2">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0</span>
+            </div>
+            <div class="flex justify-between text-white text-lg font-serif mb-6">
+                <span>Total</span>
+                <span id="cart-total">$0</span>
+            </div>
+            <button onclick="UI.checkoutCart()" class="w-full bg-yellow-600 text-black py-4 font-bold uppercase tracking-widest hover:bg-yellow-500 transition-colors">Proceed to Acquisition</button>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <!-- 1. Login Modal -->
+    <div id="login-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="UI.toggleModal('login-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#0a0a0a] border border-yellow-900/30 shadow-2xl p-8">
+            <h2 class="text-2xl font-serif text-white text-center mb-2">Secure Access</h2>
+            <p class="text-center text-gray-500 text-xs uppercase tracking-widest mb-8">Identify Yourself</p>
+            
+            <div class="flex border-b border-white/10 mb-6">
+                <button onclick="AuthUI.switchLoginTab('collector')" id="tab-collector" class="flex-1 pb-2 text-sm text-yellow-500 border-b border-yellow-500 transition-all">Collector</button>
+                <button onclick="AuthUI.switchLoginTab('admin')" id="tab-admin" class="flex-1 pb-2 text-sm text-gray-500 hover:text-white transition-all">Curator (Admin)</button>
+            </div>
+
+            <form onsubmit="AuthUI.handleLogin(event)" class="space-y-5">
+                <input type="hidden" id="login-type" value="collector">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Identity / Email</label>
+                    <input type="text" name="username" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-600 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Passkey</label>
+                    <input type="password" name="password" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-600 transition-colors">
+                </div>
+                <div id="2fa-input" class="hidden">
+                    <label class="block text-xs uppercase tracking-widest text-yellow-500 mb-2 animate-pulse">2FA Token (Simulated)</label>
+                    <input type="text" name="token" placeholder="Enter: 123456" class="w-full bg-[#111] border border-yellow-500 text-white px-4 py-3 text-sm focus:outline-none">
+                </div>
+                <div id="login-msg" class="text-center text-xs min-h-[20px]"></div>
+                <button type="submit" class="w-full bg-yellow-700 hover:bg-yellow-600 text-black font-bold py-3 uppercase tracking-widest text-sm transition-all">Authenticate</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Artwork Detail Modal -->
+    <div id="artwork-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/95 backdrop-blur-md" onclick="UI.closeArtworkModal()"></div>
+        <div id="artwork-content" class="absolute top-0 right-0 h-full w-full md:w-2/3 lg:w-1/2 bg-[#080808] border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-500 overflow-y-auto">
+            <!-- Content injected via JS -->
+        </div>
+    </div>
+
+    <!-- 3. Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-[70] hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="UI.toggleModal('checkout-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl bg-[#111] border border-yellow-900/30 shadow-2xl p-8 max-h-[90vh] overflow-y-auto">
+            <button onclick="UI.toggleModal('checkout-modal')" class="absolute top-4 right-4 text-gray-500 hover:text-white">✕</button>
+            <div id="checkout-content">
+                <!-- Dynamic Checkout Form -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. AR / View In Room Modal -->
+    <div id="ar-modal" class="fixed inset-0 z-[80] hidden">
+        <div class="absolute inset-0 bg-black/95" onclick="UI.toggleModal('ar-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[80vh] bg-[#111] border border-white/10 flex flex-col">
+            <div class="p-4 border-b border-white/10 flex justify-between">
+                <h3 class="text-white font-serif">Augmented Reality Preview</h3>
+                <button onclick="UI.toggleModal('ar-modal')" class="text-white">✕</button>
+            </div>
+            <div class="flex-grow relative bg-gray-900 overflow-hidden group" id="ar-canvas">
+                <img id="ar-background" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" class="w-full h-full object-cover opacity-50">
+                <div id="ar-artwork" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 shadow-2xl cursor-move transition-transform">
+                    <img id="ar-img-src" src="" class="w-full">
+                </div>
+                <div class="absolute bottom-4 left-0 right-0 text-center">
+                    <input type="file" id="room-upload" class="hidden" onchange="UI.handleARUpload(this)">
+                    <label for="room-upload" class="bg-white text-black px-6 py-3 uppercase text-xs font-bold cursor-pointer hover:bg-yellow-500 transition-colors">Upload Your Room</label>
+                    <p class="text-white/50 text-xs mt-2">Drag to position. Scroll to resize.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Legal/Terms Modal -->
+    <div id="legal-modal" class="fixed inset-0 z-[90] hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur" onclick="UI.toggleModal('legal-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-[#111] border border-white/10 p-8 max-h-[80vh] overflow-y-auto">
+            <h2 class="text-2xl font-serif text-white mb-4">Legal Protocols</h2>
+            <div class="text-gray-400 text-sm space-y-4 leading-relaxed">
+                <p><strong>1. Terms of Acquisition:</strong> All sales are final. Deposits for pre-orders are non-refundable. By transacting, you agree that you are not utilizing illicit funds in accordance with AML (Anti-Money Laundering) regulations.</p>
+                <p><strong>2. Shipping & Liability:</strong> Aurelia Global acts as a facilitator. Risk of loss passes to the buyer upon carrier pickup. We strongly recommend our white-glove insurance add-on.</p>
+                <p><strong>3. Digital Assets:</strong> NFT counterparts are minted on the Polygon network. Custody of private keys is the sole responsibility of the buyer.</p>
+                <p><strong>4. Privacy:</strong> We utilize end-to-end encryption. Your data is never sold, only used for concierge services.</p>
+            </div>
+            <button onclick="UI.toggleModal('legal-modal')" class="mt-8 w-full bg-white text-black py-3 font-bold uppercase text-xs">Acknowledge</button>
+        </div>
+    </div>
+
+    <!-- 6. Artist Application Modal -->
+    <div id="artist-modal" class="fixed inset-0 z-[90] hidden">
+        <div class="absolute inset-0 bg-black/95" onclick="UI.toggleModal('artist-modal')"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl bg-[#0a0a0a] border border-yellow-900/30 p-8 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <h2 class="text-3xl font-serif text-white text-center mb-2">Artist Residency Application</h2>
+            <p class="text-center text-yellow-600 text-xs uppercase tracking-widest mb-8">Join the Global Sanctuary</p>
+            
+            <form onsubmit="UI.handleArtistSubmit(event)" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Full Name</label>
+                        <input type="text" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:border-yellow-600 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Artistic Alias</label>
+                        <input type="text" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:border-yellow-600 outline-none">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email Address</label>
+                    <input type="email" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:border-yellow-600 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Portfolio URL</label>
+                    <input type="url" placeholder="https://" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:border-yellow-600 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Artist Statement</label>
+                    <textarea rows="4" required class="w-full bg-[#111] border border-white/10 text-white px-4 py-3 text-sm focus:border-yellow-600 outline-none"></textarea>
+                </div>
+
+                <div class="bg-yellow-900/10 border border-yellow-900/30 p-4 rounded">
+                    <p class="text-yellow-500 text-xs font-bold uppercase mb-2">Identity Verification (Anti-Fraud)</p>
+                    <input type="file" class="block w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-yellow-600 file:text-black hover:file:bg-yellow-500"/>
+                    <p class="text-[10px] text-gray-500 mt-2">Upload Government ID. End-to-End Encrypted.</p>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <input type="checkbox" required class="mt-1 accent-yellow-600">
+                    <p class="text-xs text-gray-500">I confirm I am the original creator of the works submitted. I agree to the 20% commission structure.</p>
+                </div>
+
+                <button type="submit" class="w-full bg-white text-black py-4 font-bold uppercase tracking-widest hover:bg-yellow-600 transition-all">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CONCIERGE WIDGET -->
+    <div class="fixed bottom-8 right-8 z-[50]">
+        <button onclick="UI.toggleChat()" class="w-14 h-14 bg-yellow-600 hover:bg-yellow-500 rounded-full flex items-center justify-center shadow-lg shadow-yellow-600/20 transition-all hover:scale-110">
+            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </button>
+        <!-- Chat Box -->
+        <div id="chat-box" class="absolute bottom-20 right-0 w-80 bg-[#111] border border-white/10 shadow-2xl hidden flex-col">
+            <div class="bg-yellow-900/20 p-4 border-b border-white/10 flex justify-between items-center">
+                <span class="text-sm font-serif text-yellow-500">Concierge / AI Curator</span>
+                <button onclick="UI.launchAICurator()" class="text-[10px] border border-yellow-600 text-yellow-600 px-2 py-1 hover:bg-yellow-600 hover:text-black transition-colors">LAUNCH AI</button>
+            </div>
+            <div class="h-64 p-4 overflow-y-auto space-y-3" id="chat-messages">
+                <div class="bg-white/5 p-3 rounded-tr-lg rounded-bl-lg rounded-br-lg text-xs text-gray-300">
+                    Welcome to Aurelia. How may I assist with your acquisition today?
+                </div>
+            </div>
+            <div class="p-3 border-t border-white/10">
+                <form onsubmit="UI.handleChat(event)" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Type inquiry..." class="flex-1 bg-black border border-white/10 px-3 py-2 text-xs text-white focus:border-yellow-600 outline-none">
+                    <button type="submit" class="bg-yellow-600 text-black px-3 py-2 text-xs font-bold uppercase">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed top-24 right-8 z-[100] transform translate-x-full transition-transform duration-300 bg-white text-black px-6 py-4 shadow-2xl border-l-4 border-yellow-500">
+        <p id="toast-msg" class="text-sm font-bold tracking-wide">Notification</p>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION -->
+    <script src="backend.js"></script>
+    <script>
+        // ==========================================
+        // UI MANAGER
+        // ==========================================
+        class UIManager {
+            constructor() {
+                this.updateAuthNav();
+                this.injectFooterText();
+                this.setupSocialProof();
+                this.currencyRate = 1;
+                this.currencySymbol = '$';
+            }
+
+            injectFooterText() { document.getElementById('footer-mission').innerText = DB.from('config').select().welcomeDesc; }
+
+            setupSocialProof() {
+                const cities = ['Tokyo', 'London', 'New York', 'Dubai', 'Zurich', 'Singapore'];
+                setInterval(() => {
+                    const box = document.getElementById('social-proof');
+                    const city = cities[Math.floor(Math.random() * cities.length)];
+                    const amount = Math.floor(Math.random() * 50) + 10;
+                    document.getElementById('sp-text').innerText = `New Bid from ${city}: $${amount},000`;
+                    document.getElementById('sp-time').innerText = 'Just now';
+                    
+                    box.classList.remove('translate-x-[120%]');
+                    setTimeout(() => box.classList.add('translate-x-[120%]'), 4000);
+                }, 15000); // Every 15s
+            }
+
+            changeLanguage(curr) {
+                const rates = { 'USD': 1, 'EUR': 0.92, 'JPY': 150, 'CNY': 7.2, 'AED': 3.67, 'GBP': 0.79, 'CHF': 0.88, 'KRW': 1330, 'RUB': 92, 'INR': 83 };
+                const syms = { 'USD': '$', 'EUR': '€', 'JPY': '¥', 'CNY': '¥', 'AED': 'د.إ', 'GBP': '£', 'CHF': 'Fr', 'KRW': '₩', 'RUB': '₽', 'INR': '₹' };
+                this.currencyRate = rates[curr];
+                this.currencySymbol = syms[curr];
+                Router.renderHome(document.getElementById('app-root')); // Re-render to update prices
+            }
+
+            formatPrice(price) {
+                return `${this.currencySymbol}${(price * this.currencyRate).toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+            }
+
+            updateAuthNav() {
+                const container = document.getElementById('auth-nav-container');
+                const mobileContainer = document.getElementById('mobile-auth-container');
+                let html = '';
+                if (Auth.isLoggedIn()) {
+                    const user = Auth.currentUser;
+                    const badge = user.isVIP ? '<span class="text-yellow-400 text-[10px] border border-yellow-400 px-1 ml-2">VIP</span>' : '';
+                    if (Auth.isAdmin()) {
+                        html = `<button onclick="Router.navigate('admin')" class="text-xs font-bold text-white border border-yellow-600 px-4 py-2">DASHBOARD</button>`;
+                    } else {
+                        html = `
+                            <div class="flex items-center gap-4">
+                                <div class="text-right hidden md:block">
+                                    <div class="text-xs text-yellow-500 font-bold">${user.name} ${badge}</div>
+                                    <div class="text-[10px] text-gray-500">Lvl ${user.level} • ${user.xp} XP</div>
+                                </div>
+                                <button onclick="Router.navigate('favorites')" class="text-xs font-bold text-white hover:text-yellow-500">COLLECTION</button>
+                                <button onclick="Auth.logout()" class="text-xs font-bold text-gray-500 hover:text-white">LOGOUT</button>
+                            </div>
+                        `;
+                    }
+                } else {
+                    html = `<button onclick="UI.toggleModal('login-modal')" class="text-xs font-bold uppercase tracking-widest border border-white/30 px-6 py-2 hover:border-yellow-500 hover:text-yellow-500 transition-all">Member Access</button>`;
+                }
+                container.innerHTML = html;
+                mobileContainer.innerHTML = html;
+            }
+
+            toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('translate-x-full'); }
+            toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
+            
+            showToast(msg) {
+                const toast = document.getElementById('toast');
+                document.getElementById('toast-msg').innerText = msg;
+                toast.classList.remove('translate-x-full');
+                setTimeout(() => toast.classList.add('translate-x-full'), 3000);
+            }
+            
+            toggleChat() {
+                const box = document.getElementById('chat-box');
+                box.classList.toggle('hidden'); box.classList.toggle('flex');
+            }
+
+            startCountdown() {
+                const config = DB.from('config').select();
+                const targetDate = new Date(config.nextDropDate).getTime();
+                const update = () => {
+                    const now = new Date().getTime();
+                    const distance = targetDate - now;
+                    const el = document.getElementById('countdown-container');
+                    if (!el) return;
+                    if (distance < 0) {
+                        el.innerHTML = '<div class="text-yellow-500 font-serif text-2xl animate-pulse">DROP LIVE</div>';
+                        return;
+                    }
+                    document.getElementById('cd-d').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    document.getElementById('cd-h').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    document.getElementById('cd-m').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    document.getElementById('cd-s').innerText = Math.floor((distance % (1000 * 60)) / 1000);
+                };
+                setInterval(update, 1000); update();
+            }
+
+            startVoiceSearch() {
+                if(!('webkitSpeechRecognition' in window)) {
+                    const q = prompt("Voice API not supported. Type search:");
+                    if(q) Router.navigate('home', q);
+                    return;
+                }
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.start();
+                this.showToast("Listening...");
+                recognition.onresult = (event) => {
+                    const q = event.results[0][0].transcript;
+                    this.showToast(`Searching: "${q}"`);
+                    Router.navigate('home', q);
+                };
+            }
+
+            handleChat(e) {
+                e.preventDefault();
+                const input = document.getElementById('chat-input');
+                const container = document.getElementById('chat-messages');
+                const text = input.value;
+                if(!text) return;
+                container.innerHTML += `<div class="text-right mb-2"><span class="bg-yellow-600 text-black px-3 py-2 rounded text-xs inline-block">${text}</span></div>`;
+                input.value = '';
+                setTimeout(() => {
+                    container.innerHTML += `<div class="text-left mb-2"><span class="bg-white/10 text-gray-300 px-3 py-2 rounded text-xs inline-block">Connecting you to a specialist...</span></div>`;
+                    container.scrollTop = container.scrollHeight;
+                }, 1000);
+            }
+
+            launchAICurator() {
+                const c = document.getElementById('chat-messages');
+                c.innerHTML += `<div class="text-left mb-2"><span class="bg-white/10 text-yellow-500 px-3 py-2 rounded text-xs inline-block font-bold">AI CURATOR: What is your approximate budget?</span></div>`;
+            }
+
+            // --- AR & GALLERY ---
+            openArtwork(id) {
+                const art = DB.from('artworks').select().find(a => a.id == id);
+                if (!art) return;
+                
+                // Dynamic Pricing: Increase views + Update Price
+                DB.from('artworks').update(id, { views: art.views + 1 });
+                const dynamicPrice = Math.floor(art.price * (1 + (Math.floor(art.views/200) * 0.03)));
+
+                let actionBtn = '';
+                if(art.isAuction) {
+                    actionBtn = `<button onclick="UI.openCheckout(${art.id}, ${dynamicPrice}, true)" class="w-full bg-white text-black py-4 uppercase tracking-widest font-bold hover:bg-yellow-500 transition-colors">Place Bid (Live)</button>`;
+                } else if (art.isGated) {
+                     actionBtn = `<button onclick="alert('A curator will contact you shortly.')" class="w-full border border-white text-white py-4 uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-colors">Request Price Access</button>`;
+                } else {
+                     actionBtn = `<div class="flex gap-2"><button onclick="UI.openCheckout(${art.id}, ${dynamicPrice})" class="flex-1 bg-white text-black py-4 uppercase tracking-widest font-bold hover:bg-yellow-500 transition-colors">Acquire Now</button>
+                     <button onclick="UI.openCheckout(${art.id}, ${dynamicPrice}, false, true)" class="flex-1 border border-white/20 text-gray-400 py-4 uppercase text-xs hover:text-white">Pre-Order (10%)</button></div>`;
+                }
+
+                const html = `
+                    <div class="p-8 md:p-12 min-h-full flex flex-col pb-24">
+                        <button onclick="UI.closeArtworkModal()" class="absolute top-6 right-6 text-white/50 hover:text-white z-10">✕</button>
+                        <span class="text-yellow-500 text-xs font-bold uppercase tracking-widest mb-4">Lot #${art.id}</span>
+                        <h2 class="text-4xl font-serif text-white mb-2">${art.title}</h2>
+                        <p class="text-xl text-gray-400 font-light mb-6 font-italic">${art.artist}</p>
+                        
+                        <div class="flex-grow mb-8 flex items-center justify-center bg-[#050505] p-4 border border-white/5 relative group">
+                            <img src="${art.image}" class="max-h-[50vh] object-contain shadow-2xl">
+                            <button onclick="UI.toggleModal('ar-modal'); document.getElementById('ar-img-src').src='${art.image}'" class="absolute bottom-4 right-4 bg-black/80 text-white text-xs px-4 py-2 border border-white/20 hover:bg-yellow-600">View In Room (AR)</button>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8 mb-8 border-y border-white/10 py-6">
+                            <div><p class="text-xs text-gray-500 uppercase">Valuation</p><p class="text-yellow-500 text-lg">${this.formatPrice(dynamicPrice)} <span class="text-[10px] text-green-500 ml-2">+${(Math.floor(art.views/200)*3)}% Demand</span></p></div>
+                            <div><p class="text-xs text-gray-500 uppercase">Global Views</p><p class="text-white">${art.views}</p></div>
+                        </div>
+                        
+                        <p class="text-gray-300 leading-relaxed font-light mb-8 text-sm">${art.desc}</p>
+                        ${actionBtn}
+                    </div>
+                `;
+                document.getElementById('artwork-content').innerHTML = html;
+                document.getElementById('artwork-modal').classList.remove('hidden');
+                setTimeout(() => document.getElementById('artwork-content').classList.remove('translate-x-full'), 10);
+            }
+            
+            closeArtworkModal() {
+                const content = document.getElementById('artwork-content');
+                content.classList.add('translate-x-full');
+                setTimeout(() => document.getElementById('artwork-modal').classList.add('hidden'), 300);
+            }
+
+            handleARUpload(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('ar-background').src = e.target.result;
+                        document.getElementById('ar-background').classList.remove('opacity-50');
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            openCheckout(id, price, isBid = false, isPreOrder = false) {
+                const art = DB.from('artworks').select().find(a => a.id == id);
+                const finalPrice = isPreOrder ? price * 0.1 : price;
+                const content = document.getElementById('checkout-content');
+                
+                const gateways = [
+                    {name: 'Stripe Card', color: 'hover:border-blue-400'}, {name: 'PayPal', color: 'hover:border-blue-600'},
+                    {name: 'Apple Pay', color: 'hover:border-gray-200'}, {name: 'Google Pay', color: 'hover:border-red-400'},
+                    {name: 'Crypto (ETH)', color: 'hover:border-orange-500'}, {name: 'Wire Transfer', color: 'hover:border-green-500'},
+                    {name: 'Klarna', color: 'hover:border-pink-400'}, {name: 'Alipay', color: 'hover:border-blue-400'},
+                    {name: 'WeChat Pay', color: 'hover:border-green-400'}, {name: 'Amazon Pay', color: 'hover:border-yellow-600'}
+                ];
+
+                content.innerHTML = `
+                    <h3 class="text-2xl font-serif text-white mb-6">${isBid ? 'Place Live Bid' : (isPreOrder ? 'Secure Pre-Order Deposit' : 'Secure Acquisition')}</h3>
+                    
+                    <div class="bg-white/5 p-4 mb-6 flex gap-4 items-center border border-white/10">
+                        <img src="${art.image}" class="w-16 h-16 object-cover">
+                        <div>
+                            <p class="text-white font-serif">${art.title}</p>
+                            <p class="text-yellow-500 text-xl">${this.formatPrice(finalPrice)}</p>
+                            ${isPreOrder ? '<p class="text-[10px] text-gray-400">10% Deposit Required</p>' : ''}
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="flex items-center gap-2 text-white text-sm mb-4 cursor-pointer bg-white/5 p-3 border border-white/10 hover:border-yellow-500">
+                            <input type="checkbox" id="syndicate-toggle" onchange="document.getElementById('syndicate-panel').classList.toggle('hidden')" class="w-4 h-4 accent-yellow-500">
+                            <span>Buy with Syndicate (Split Cost)</span>
+                        </label>
+                        <div id="syndicate-panel" class="hidden pl-6 border-l border-yellow-500 mb-4">
+                            <p class="text-xs text-gray-400 mb-2">Create a pool link to share with friends.</p>
+                            <button class="text-yellow-500 text-xs underline">Generate Syndicate Link</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Select Global Gateway</p>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+                            ${gateways.map(g => `
+                                <button onclick="UI.processPayment('${g.name}')" class="border border-white/10 ${g.color} p-3 text-center transition-colors">
+                                    <div class="text-white font-bold text-[10px]">${g.name}</div>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between text-xs text-gray-500 border-t border-white/10 pt-4">
+                        <span>Est. Tax: Calculated by IP</span>
+                        <span>Carbon Offset: Included</span>
+                    </div>
+                `;
+                this.toggleModal('checkout-modal');
+                
+                // Abandoned Cart Sim
+                setTimeout(() => {
+                    if(!document.getElementById('checkout-modal').classList.contains('hidden')) {
+                       // Still open
+                    } else {
+                       this.showToast("📩 Email sent: Complete purchase for 5% off!");
+                    }
+                }, 20000);
+            }
+
+            processPayment(method) {
+                const content = document.getElementById('checkout-content');
+                content.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-12 text-center">
+                        <div class="spinner mb-6"></div>
+                        <h3 class="text-xl text-white font-serif mb-2">Connecting to ${method}...</h3>
+                        <p class="text-gray-500 text-sm">Verifying Funds & KYC</p>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    Auth.addXP(500); // Gamification
+                    content.innerHTML = `
+                        <div class="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-6 text-black text-2xl">✓</div>
+                            <h3 class="text-xl text-white font-serif mb-2">Success</h3>
+                            <p class="text-gray-500 text-sm mb-4">Ownership Certificate Minted.</p>
+                            <div class="bg-green-900/30 text-green-400 px-4 py-2 rounded text-xs mb-6 border border-green-500/30">
+                                🌱 Carbon Offset Certificate Generated
+                            </div>
+                            <button onclick="UI.toggleModal('checkout-modal')" class="bg-white text-black px-8 py-3 uppercase tracking-widest font-bold text-xs">Close</button>
+                        </div>
+                    `;
+                }, 2000);
+            }
+
+            showTerms() { this.toggleModal('legal-modal'); }
+            openArtistApp() { this.toggleModal('artist-modal'); }
+            handleArtistSubmit(e) {
+                e.preventDefault();
+                this.toggleModal('artist-modal');
+                this.showToast('Application Received. Our curators will contact you.');
+            }
+            openInfluencerPortal() { alert("Generating Affiliate Dashboard..."); }
+            
+            // CART FUNCTIONS
+            toggleCart() { 
+                const cart = document.getElementById('cart-sidebar');
+                cart.classList.toggle('translate-x-full');
+                if(!cart.classList.contains('translate-x-full')) {
+                    Cart.render();
+                }
+            }
+            addToCart(id) { 
+                if(Cart.add(id)) {
+                    this.toggleCart(); 
+                    this.showToast("Added to Selection");
+                } else {
+                    this.showToast("Already in Selection");
+                }
+            }
+            checkoutCart() {
+                this.toggleCart();
+                setTimeout(() => this.openCheckout(null, Cart.total(), false), 300);
+            }
+            addToWishlist(id) {
+                if (!Auth.isLoggedIn()) return this.toggleModal('login-modal');
+                // In a real app we would save this to user profile
+                this.showToast("Added to Private Collection");
+            }
+
+            handleNewsletter(e) {
+                e.preventDefault();
+                const email = e.target.querySelector('input').value;
+                this.showToast(`Welcome to the Inner Circle, ${email}`);
+                e.target.reset();
+                // Simulate API call
+                setTimeout(() => {
+                    this.showToast("Check your inbox for the Welcome Dossier.");
+                }, 2000);
+            }
+        }
+
+        const UI = new UIManager();
+
+        // ==========================================
+        // AUTH UI (Frontend Logic)
+        // ==========================================
+        class AuthManagerUI {
+            constructor() {
+                this.currentUser = Auth.currentUser;
+            }
+
+            handleLogin(e) {
+                e.preventDefault();
+                const form = e.target;
+                const res = Auth.login(form.username.value, form.password.value, form.token ? form.token.value : null);
+                if(res.success) {
+                    UI.toggleModal('login-modal');
+                    UI.showToast(`Welcome, ${res.user.name}.`);
+                    UI.updateAuthNav();
+                    if(Auth.isAdmin()) Router.navigate('admin');
+                    else Router.navigate('home');
+                } else {
+                    document.getElementById('login-msg').innerText = res.msg;
+                    document.getElementById('login-msg').classList.add('text-red-500');
+                    if(res.msg === 'Invalid Credentials' && form.username.value === 'admin') {
+                        document.getElementById('2fa-input').classList.remove('hidden');
+                    }
+                }
+            }
+
+            switchLoginTab(type) {
+                document.getElementById('login-type').value = type;
+                const tAdmin = document.getElementById('tab-admin');
+                const tColl = document.getElementById('tab-collector');
+                const div2fa = document.getElementById('2fa-input');
+                
+                if(type === 'admin') {
+                    tAdmin.classList.replace('text-gray-500', 'text-yellow-500');
+                    tAdmin.classList.add('border-b', 'border-yellow-500');
+                    tColl.classList.replace('text-yellow-500', 'text-gray-500');
+                    tColl.classList.remove('border-b', 'border-yellow-500');
+                    div2fa.classList.remove('hidden');
+                } else {
+                    tColl.classList.replace('text-gray-500', 'text-yellow-500');
+                    tColl.classList.add('border-b', 'border-yellow-500');
+                    tAdmin.classList.replace('text-yellow-500', 'text-gray-500');
+                    tAdmin.classList.remove('border-b', 'border-yellow-500');
+                    div2fa.classList.add('hidden');
+                }
+            }
+        }
+        const AuthUI = new AuthManagerUI();
+
+        // ==========================================
+        // 4. ROUTER
+        // ==========================================
+        class RouterManager {
+            navigate(view, query = null) {
+                window.scrollTo(0, 0);
+                const root = document.getElementById('app-root');
+                
+                switch(view) {
+                    case 'home': this.renderHome(root, query); break;
+                    case 'metaverse': this.renderMetaverse(root); break;
+                    case 'livestudio': this.renderLiveStudio(root); break;
+                    case 'boutique': this.renderBoutique(root); break;
+                    case 'admin': 
+                        if(!Auth.isAdmin()) { this.navigate('home'); UI.toggleModal('login-modal'); return; }
+                        this.renderAdmin(root); break;
+                    case 'favorites':
+                        if(!Auth.isLoggedIn()) { this.navigate('home'); UI.toggleModal('login-modal'); return; }
+                        this.renderFavorites(root); break;
+                    default: this.renderHome(root);
+                }
+            }
+
+            renderHome(root, searchQuery) {
+                const config = DB.from('config').select();
+                const allArt = DB.from('artworks').select();
+                
+                // Helper to generate card HTML
+                const createCard = (a) => `
+                    <div class="group relative" onclick="UI.openArtwork(${a.id})">
+                        <div class="relative aspect-[4/5] overflow-hidden mb-6 bg-[#111] border border-white/5 cursor-pointer">
+                            <img src="${a.image}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100" loading="lazy">
+                            ${a.isAuction ? '<div class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold uppercase px-2 py-1 animate-pulse z-10">Live Auction</div>' : ''}
+                            ${a.isGated ? '<div class="absolute top-4 right-4 bg-black/50 backdrop-blur border border-yellow-500/30 text-yellow-500 text-[10px] font-bold uppercase px-2 py-1 z-10">Private Sale</div>' : ''}
+                            
+                            <!-- Hover Actions -->
+                            <div class="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40 backdrop-blur-[2px]">
+                                <button onclick="event.stopPropagation(); UI.addToWishlist(${a.id})" class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:bg-yellow-500 transition-colors" title="Add to Wishlist">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                </button>
+                                <button onclick="event.stopPropagation(); UI.addToCart(${a.id})" class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:bg-yellow-500 transition-colors" title="Add to Cart">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-lg font-serif text-white group-hover:text-yellow-500 transition-colors truncate px-2">${a.title}</h3>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] mt-2">${a.artist}</p>
+                            <p class="text-sm text-white/60 mt-1 font-serif">${a.isGated ? 'Price on Request' : UI.formatPrice(a.price)}</p>
+                        </div>
+                    </div>
+                `;
+
+                let galleryHTML = '';
+
+                if(searchQuery) {
+                    // FILTERED VIEW (Search Results)
+                    const filtered = allArt.filter(a => a.title.toLowerCase().includes(searchQuery.toLowerCase()) || a.type.toLowerCase().includes(searchQuery.toLowerCase()));
+                    galleryHTML = `
+                        <div id="gallery" class="max-w-[1800px] mx-auto px-4 lg:px-8 py-24">
+                            <div class="flex justify-between items-end mb-12 border-b border-white/10 pb-6">
+                                <h2 class="text-3xl font-serif text-white">Search: "${searchQuery}"</h2>
+                                <button onclick="Router.navigate('home')" class="text-xs text-gray-500 hover:text-white uppercase">Clear</button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                                ${filtered.length === 0 ? '<p class="text-gray-500">No works found matching your criteria.</p>' : filtered.map(a => createCard(a)).join('')}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // CATEGORIZED VIEW (Default)
+                    const categories = ['Painting', 'Sculpture', 'Digital', 'Photography', 'Mixed Media'];
+                    
+                    let catsHTML = '';
+                    categories.forEach((cat, index) => {
+                        const catArt = allArt.filter(a => a.type === cat).slice(0, 4); // Top 4 for preview
+                        if(catArt.length > 0) {
+                            catsHTML += `
+                                <div class="mb-32 fade-in" style="animation-delay: ${index * 0.2}s">
+                                    <div class="flex justify-between items-end mb-12 border-b border-white/10 pb-4">
+                                        <h2 class="text-4xl font-serif text-white tracking-widest"><span class="text-yellow-600 text-lg align-top mr-2">0${index+1}</span> ${cat.toUpperCase()}</h2>
+                                        <button onclick="Router.navigate('home', '${cat}')" class="text-xs text-gray-500 hover:text-yellow-500 border border-white/10 hover:border-yellow-500 px-6 py-3 uppercase tracking-widest transition-all">View Collection</button>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                                        ${catArt.map(a => createCard(a)).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    galleryHTML = `
+                        <div id="gallery" class="max-w-[1800px] mx-auto px-4 lg:px-8 py-24">
+                            ${catsHTML}
+                        </div>
+                    `;
+                }
+
+                root.innerHTML = `
+                    <!-- HERO -->
+                    <div class="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&w=2000&q=80')] bg-cover bg-center opacity-50 animate-[pulse_10s_infinite]"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/60 z-0"></div>
+                        <div class="relative z-10 text-center px-4 animate-slide-up flex flex-col items-center">
+                            <div class="mb-8 border-b border-yellow-500/50 pb-4">
+                                <p class="text-yellow-500 text-xs tracking-[0.4em] uppercase mb-2">Upcoming Release</p>
+                                <h2 class="text-white font-serif text-2xl tracking-widest">${config.nextDropTitle}</h2>
+                            </div>
+                            <div id="countdown-container" class="flex gap-4 mb-12 text-white">
+                                <div><div id="cd-d" class="countdown-digit text-4xl">00</div><div class="countdown-label">Days</div></div>
+                                <div><div id="cd-h" class="countdown-digit text-4xl">00</div><div class="countdown-label">Hours</div></div>
+                                <div><div id="cd-m" class="countdown-digit text-4xl">00</div><div class="countdown-label">Mins</div></div>
+                                <div><div id="cd-s" class="countdown-digit text-4xl">00</div><div class="countdown-label">Secs</div></div>
+                            </div>
+                            <h1 class="text-5xl md:text-7xl lg:text-9xl font-serif text-white mb-6 text-shadow-glow tracking-tighter">${config.welcomeTitle}</h1>
+                            <button onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})" class="border border-white text-white px-10 py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500">Enter Sanctuary</button>
+                        </div>
+                    </div>
+                    <script>setTimeout(() => UI.startCountdown(), 100);<\/script>
+
+                    <!-- GALLERY SECTIONS -->
+                    ${galleryHTML}
+
+                    <!-- TESTIMONIALS -->
+                    <div class="py-24 bg-[#050505] border-t border-white/5">
+                        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                            <h2 class="text-3xl font-serif text-white text-center mb-16 tracking-widest">VOICES OF THE SANCTUARY</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                                <div class="text-center">
+                                    <div class="text-yellow-500 text-4xl font-serif mb-4">“</div>
+                                    <p class="text-gray-400 text-sm italic mb-6 leading-relaxed">Aurelia's authentication process is unparalleled. I've never felt more secure acquiring digital assets.</p>
+                                    <p class="text-white font-bold text-xs uppercase tracking-widest">Isabella Rossellini</p>
+                                    <p class="text-gray-600 text-[10px] uppercase">Collector, Milan</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-yellow-500 text-4xl font-serif mb-4">“</div>
+                                    <p class="text-gray-400 text-sm italic mb-6 leading-relaxed">The VR viewing room changed everything. Being able to walk around the sculpture before buying was magic.</p>
+                                    <p class="text-white font-bold text-xs uppercase tracking-widest">Kenji Tanaka</p>
+                                    <p class="text-gray-600 text-[10px] uppercase">Architect, Tokyo</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-yellow-500 text-4xl font-serif mb-4">“</div>
+                                    <p class="text-gray-400 text-sm italic mb-6 leading-relaxed">White-glove delivery to my penthouse in Dubai was flawless. The team handled customs perfectly.</p>
+                                    <p class="text-white font-bold text-xs uppercase tracking-widest">Sheikh Al-Fayed</p>
+                                    <p class="text-gray-600 text-[10px] uppercase">Investor, Dubai</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderMetaverse(root) {
+                root.innerHTML = `
+                    <div class="h-screen w-full flex items-center justify-center bg-black relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-30 perspective-container"></div>
+                        <div class="z-10 text-center p-8 bg-black/50 backdrop-blur-md border border-white/10 max-w-2xl">
+                            <h1 class="text-5xl font-serif text-white mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">AURELIA METAVERSE</h1>
+                            <p class="text-gray-300 mb-8">Immersive VR Gallery Experience. Connect your headset.</p>
+                            <button class="bg-white text-black px-8 py-3 font-bold uppercase hover:bg-purple-500 hover:text-white transition-colors">Enter VR (Simulated)</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderLiveStudio(root) {
+                root.innerHTML = `
+                    <div class="max-w-7xl mx-auto px-4 py-12">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            <div class="lg:col-span-2">
+                                <div class="aspect-video bg-[#111] border border-white/10 relative flex items-center justify-center group">
+                                    <p class="text-white animate-pulse">● LIVE FEED: TOKYO STUDIO</p>
+                                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                                </div>
+                                <h2 class="text-2xl font-serif text-white mt-6">Artist: Elena Vora</h2>
+                                <p class="text-gray-400">Currently working on "The Golden Void II"</p>
+                            </div>
+                            <div class="bg-[#111] p-6 border border-white/10 h-full">
+                                <h3 class="text-white font-serif mb-4">Live Chat</h3>
+                                <div class="h-64 overflow-y-auto text-xs space-y-2 text-gray-500 mb-4">
+                                    <p><span class="text-yellow-500">User88:</span> Amazing brushwork!</p>
+                                    <p><span class="text-blue-500">Collector_X:</span> Is this for sale?</p>
+                                </div>
+                                <input placeholder="Say something..." class="w-full bg-black border border-white/10 px-3 py-2 text-white text-xs">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderBoutique(root) {
+                const items = [
+                    {name: "The Gold Hoodie", price: 450, img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=500&q=60"},
+                    {name: "Curator's Coffee Table Book", price: 120, img: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=60"},
+                    {name: "Collector's Tote", price: 85, img: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=60"}
+                ];
+                root.innerHTML = `
+                    <div class="max-w-7xl mx-auto px-4 py-24">
+                        <h1 class="text-4xl font-serif text-white mb-12 text-center">Aurelia Boutique</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            ${items.map(i => `
+                                <div class="bg-[#111] border border-white/10 p-6 text-center group hover:border-yellow-500 transition-colors">
+                                    <img src="${i.img}" class="w-full h-64 object-cover mb-6 grayscale group-hover:grayscale-0 transition-all">
+                                    <h3 class="text-white font-serif text-xl">${i.name}</h3>
+                                    <p class="text-yellow-500 mt-2">${UI.formatPrice(i.price)}</p>
+                                    <button onclick="UI.showToast('Added to cart')" class="mt-4 border border-white/20 text-white px-6 py-2 text-xs hover:bg-white hover:text-black">Add to Cart</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderAdmin(root) {
+                root.innerHTML = `<div class="p-8 text-white text-center"><h1>Admin Panel (Simulated)</h1><p>Refer to v0.2.0 codebase for full admin features.</p></div>`;
+            }
+
+            renderFavorites(root) {
+                root.innerHTML = `<div class="p-8 text-white text-center"><h1>My Collection</h1><p>Your saved items appear here.</p></div>`;
+            }
+        }
+
+        const Router = new RouterManager();
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            Router.navigate('home');
+        });
+
+    </script>
+</body>
+</html>
